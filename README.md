@@ -1,3 +1,8 @@
 This is inteded as a project to create a news utility.
 
-current project: RSS feed
+dev:
+    requires python3
+                html2text
+                feedparser
+
+current project: cli RSS feed
