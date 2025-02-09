@@ -20,7 +20,7 @@ def pre_print(text, list_of_words):
     returned = text
     for word in list_of_words:
         if word in text:
-            return f"{color['RED']}{text}{color['WHITE']}"
+            return f"TRIGGERED BY WORD:{word}\n{color['RED']}{text}{color['WHITE']}"
     return text
 
 def main():
@@ -35,19 +35,19 @@ def main():
                 feeded = feedparser.parse(line)
                 title = feeded.entries[0].title
                 date_published = feeded.entries[0].published
-                if feeded.feed.title not in feeds.keys():
-                    feeds[feeded.feed.title] = ""
-                if feeded.feed.title in feeds.keys() and feeds[feeded.feed.title] == html2text.html2text(feeded.entries[0].description):
+                if feeded.entries[0].guid not in feeds.keys():
+                    feeds[feeded.entries[0].guid] = ""
+                if feeded.entries[0].guid in feeds.keys() and feeds[feeded.entries[0].guid] == html2text.html2text(feeded.entries[0].description):
                     time.sleep(10)
                     pass
 
-                elif feeded.feed.title in feeds.keys() :
+                elif feeded.entries[0].guid in feeds.keys() :
                     print(feeded.feed.title)
                     print(date_published)
                     print(feeded.entries[0].title)
                     not_functional_var = html2text.html2text(feeded.entries[0].description)
                     print(pre_print(not_functional_var,alerting_words))
-                    feeds[feeded.feed.title] = html2text.html2text(feeded.entries[0].description)
+                    feeds[feeded.entries[0].guid] = html2text.html2text(feeded.entries[0].description)
                     print("###################")
 
 

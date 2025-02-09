@@ -7,6 +7,7 @@ in
     buildInputs = [ 
       python312Packages.feedparser
       python312Packages.html2text
+      python312Packages.requests
       ];
     OPENSSL_DEV=openssl.dev;
   }
